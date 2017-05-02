@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Rage Games</title>
+
+
+<!--   <link rel="shortcut icon" href="favicon.ico">
+  <link rel="icon" href="favicon.ico"> -->
+
+  <link rel="stylesheet" type="text/css" href="assets/css/sockstrap.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Oswald|Raleway" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- outer containter for the whole game -->
+  <div id = "main" class = "container-fluid">
+
+    <div id = "game" class = "container">
+
+      <div id = "logo" v-bind:style='(currentPage == 0) ? logoFull : logoHalf' class = "s-8 center">
+        <img class = "s-12" src = "assets/img/rage_logo_white.png">
+      </div>
+
+      <!-- all session configuration will happen here 
+      ie language, number of players-->
+      <div id = "config" v-if="currentPage == 0" class="s-8">
+        <ul class="s-12 radio-override row center">
+          <li class = "s-6">
+              <input id = "english" v-model.number = "language" type="radio" name="language" value='e' class = "s-12">
+              <label for = "english">ENGLISH</label>
+          </li>
+          <li class = "s-6">
+              <input id = "french" v-model.number = "language" type="radio" name="language" value='f' class = "s-12">
+              <label for = "french">FRANCAIS</label>
+          </li>
+        </ul>
+        <ul class="s-12 radio-override row center">
+          <li class = "s-4">
+              <input id = "p-1" v-model.number = "numPlayers" type="radio" name="numPlayers" value='1' class = "s-12">
+              <label for = "p-1">1</label>
+          </li>
+          <li class = "s-4">
+              <input id = "p-2" v-model.number = "numPlayers" type="radio" name="numPlayers" value='2' class = "s-12">
+              <label for = "p-2">2</label>
+          </li>
+          <li class = "s-4">
+              <input id = "p-3" v-model.number = "numPlayers" type="radio" name="numPlayers" value='3' class = "s-12">
+              <label for = "p-3">3</label>
+          </li>
+        </ul>
+      </div>
+
+
+      <!-- player signup will happen here -->
+      <div v-if="currentPage == 1" id = "" class = "sign-up-sheet s-12">
+
+        <div id = "sign-up-current-player" class = "s-8" ><p>Player {{currentLogin}}</p></div>
+
+        <sign-up v-for = "n in numPlayers" :player-id = "n - 1" v-bind:id = "'sign-up-' + n" class = "sign-up s-12"
+        v-bind:style='(currentLogin == n) ? inputSignup : inputPreSignup'></sign-up>
+        <p id = "sign-up-message" class = "s-8"> {{loginMessage}} </p>
+      </div>
+
+      <div v-if="currentPage == 2" id = "set-up-game" class="s-12 radio-override">
+
+<!--         <form action="">
+          <input v-model = "gameMode" type="radio" name="mode" value="casual"> Casual
+          <input v-model = "gameMode" type="radio" name="mode" value="competitive"> Competitive
+          <input v-model = "gameMode" type="radio" name="mode" value="arms race"> Arms Race
+          <input v-model = "gameMode" type="radio" name="mode" value="plank"> Plank
+          <input v-model = "gameMode" type="radio" name="mode" value="tournament"> Tournament
+          </br> 
+          <p> {{gameMode}} </p>
+        </form> -->
+
+        <ul class="s-8 radio-override row center">
+          <li class = "s-4">
+              <input id = "casual" v-model.number = "gameMode" type="radio" name="mode" value='casual' class = "s-12">
+              <label for = "casual">Casual</label>
+          </li>
+          <li class = "s-4">
+              <input id = "competitive" v-model.number = "gameMode" type="radio" name="mode" value='competitive' class = "s-12">
+              <label for = "competitive">Competitive</label>
+          </li>
+          <li class = "s-4">
+              <input id = "armsRace" v-model.number = "gameMode" type="radio" name="mode" value='arms race' class = "s-12">
+              <label for = "armsRace">Arms Race</label>
+          </li>
+          <li class = "s-4">
+              <input id = "plank" v-model.number = "gameMode" type="radio" name="mode" value='plank' class = "s-12">
+              <label for = "plank">Plank</label>
+          </li>
+          <li class = "s-4">
+              <input id = "tournament" v-model.number = "gameMode" type="radio" name="mode" value='tournament' class = "s-12">
+              <label for = "tournament">Tournament</label>
+          </li>
+        </ul>
+
+      </div>
+
+      <div v-if="currentPage <= 2" id = "navigation" class = "s-8 row">
+        <button id = "prev" @click = "goToPreviousPage" type="button" class = "s-6"> BACK </button>
+        <button id = "next" @click = "goToNextPage" type="button" class = "s-6"> NEXT </button>
+<!--         <p> {{currentPage}} </p> -->
+      </div>
+
+      <div v-if="currentPage == 3" id = "in-game" class = "s-12">
+        <player class = "s-8 player" v-for='n in numPlayers' :player-id = "n - 1">{{n}}</player>
+
+
+     <!--    <div v-if="isRunning">
+          <button @click = "undoShot"> Undo </button>
+          <button @click = "takeShot (0)"> 0 points </button>
+          <button @click = "takeShot (1)"> 1 point </button>
+          <button @click = "takeShot (3)"> 3 points </button>
+          <button @click = "takeShot (5)"> 5 points </button>
+          <button @click = "takeShot (7)" :disabled="!canSevenShot"> 7 points </button>
+
+          <button @click = "quitGame ()"> quit </button>
+        </div>
+        <div v-else>
+          <span>1st: {{}}</span>
+          <span>2nd: {{}}</span>
+          <span>3rd: {{}}</span>
+          <button @click = "replay"> Play Again? </button>
+          <button @click = "chooseMode"> Choose New Mode </button>
+        </div>
+ -->
+      </div>
+
+<!--       <img style = "width: 200vw; height 200vw; mix-blend-mode: overlay;" src="assets/img/grunge_wood.jpg"> -->
+
+    </div>
+
+  </div>
+
+  <!-- the vue js script -->
+	<script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+
+  <!-- game logic scripts -->
+  <script src="assets/js/logic/player.js"></script>
+  <script src="assets/js/logic/game.js"></script>
+  <script src="assets/js/logic/session.js"></script>
+  
+  <!-- the main js file -->
+  <script src="assets/js/main.js"></script>
+  	
+</body>
+</html>
