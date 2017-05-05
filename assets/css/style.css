@@ -198,8 +198,6 @@ input[type="text"] {
     display: block;
 	float: left;
 
-	padding: none;
-
 }
 
 .shot {
@@ -212,7 +210,6 @@ input[type="text"] {
 
     text-align: center;
 
-    padding: none;
 }
 
 #total {
@@ -223,9 +220,7 @@ input[type="text"] {
 	display: block;
 	float: left;
 
-	border: 1vw solid orange;
-
-	padding: none;
+	border: 0.5vw solid orange;
 
 }
  
@@ -234,9 +229,8 @@ input[type="text"] {
 	height: 10vw;
 
 	float: left;
-	border:3px solid red;
+	border: 0.5vw solid red;
 
-	padding: none;
 }
 
 .target-ring {
