@@ -8,6 +8,7 @@
 <!--   <link rel="shortcut icon" href="favicon.ico">
   <link rel="icon" href="favicon.ico"> -->
 
+  <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
   <link rel="stylesheet" type="text/css" href="assets/css/global-classes.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
@@ -95,8 +96,8 @@
       </div>
 
       <div v-if="currentPage <= 2" id = "navigation" class = "s-8 row">
-        <button id = "prev" @click = "goToPreviousPage" type="button" class = "s-6"> BACK </button>
-        <button id = "next" @click = "goToNextPage" type="button" class = "s-6"> NEXT </button>
+        <button id = "prev" @click = "goToPreviousPage" type="button" class = "s-6 left-edge"> BACK </button>
+        <button id = "next" @click = "goToNextPage" type="button" class = "s-6 right-edge"> NEXT </button>
 <!--         <p> {{currentPage}} </p> -->
       </div>
 
@@ -106,7 +107,13 @@
           <player class = "s-8 player" v-for='n in numPlayers' :player-id = "n - 1">{{n}}</player>
         </div>
 
-        <div id = "target" v-if="isRunning">
+        <div id = "in-game-ui">
+          <button class = "in-game-ui-button right-edge" @click = "quitGame"> Quit </button>
+          <button class = "in-game-ui-button" @click = "replay"> Restart </button>
+          <button class = "in-game-ui-button left-edge" @click = "undoShot"> Undo </button>
+        </div>
+
+        <div id = "target" class = "animated shake" v-if="isRunning">
           <button id = "zero-point" @click = "takeShot (0)"> 0 </button>
           <button id = "one-point" class = "target-ring" @click = "takeShot (1)"></button>
           <button id = "three-point" class = "target-ring" @click = "takeShot (3)"></button>
@@ -114,25 +121,36 @@
           <button id = "seven-point-left" class = "target-ring seven-shot" @click = "takeShot (7)" :disabled="!canSevenShot"></button>
           <button id = "seven-point-right" class = "target-ring seven-shot" @click = "takeShot (7)" :disabled="!canSevenShot"></button>
         </div>
-
-<!--         <button @click = "undoShot"> Undo </button>
-        <button @click = "replay"> Restart </button>
-        <button @click = "quitGame"> Quit </button> -->
-<!--         <div v-else>
+        <div v-else>
           <span>1st: {{}}</span>
           <span>2nd: {{}}</span>
           <span>3rd: {{}}</span>
           <button @click = "replay"> Play Again? </button>
           <button @click = "chooseMode"> Choose New Mode </button>
-        </div> -->
+        </div>
 
       </div>
-
-<!--       <img style = " position: absolute; z-index: 20; width: 200vw; height 100vh; mix-blend-mode: overlay;" src="assets/img/grunge_wood.jpg"> -->
+      <img style = " position: absolute; top: 0; left: 0; z-index: 1; width: 200vw; height 100vh; mix-blend-mode: overlay;" src="assets/img/grunge_wood.jpg">
 
     </div>
 
   </div>
+
+  <div id="scene">
+    <div class="layer" data-depth="1"><div id="particles-js-back" class = "ps"></div></div>
+    <div class="layer" data-depth="0.5"><div id="particles-js" class = "ps"></div></div>
+  </div>
+
+<!--   <div id="particles-js-back" class = "ps"></div>
+  <div id="particles-js" class = "ps"></div> -->
+
+  <!-- jquery -->
+  <script type="text/javascript" src="assets/js/plugins/jquery-3.1.1.slim.min.js"></script>
+
+  <!--plugins used for styling-->
+  <script src="assets/js/plugins/particles.js"></script>
+  <script src="assets/js/plugins/parallax.js"></script>
+  <script src="assets/js/plugins/jquery.parallax.js"></script>
 
   <!-- the vue js script -->
 	<script src="https://unpkg.com/vue"></script>
@@ -142,7 +160,10 @@
   <script src="assets/js/logic/player.js"></script>
   <script src="assets/js/logic/game.js"></script>
   
-  <!-- the main js file -->
+  <!--I use this to run the plugins-->
+  <script src="assets/js/app.js"></script>
+
+  <!-- the main js file that uses vue js-->
   <script src="assets/js/main.js"></script>
   	
 </body>

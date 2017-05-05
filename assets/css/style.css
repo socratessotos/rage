@@ -17,15 +17,24 @@ button {
     color: white;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
 
     font-family: 'Oswald', sans-serif;
     font-size: 5vw;
+
+    z-index: 20;
 }
 
 button:active {
   	background-color: #000;
   	transform: translateY(4px);
+}
+
+.left-edge {
+	border-radius: 2vw 0vw 0vw 2vw;
+}
+
+.right-edge {
+	border-radius: 0vw 2vw 2vw 0vw;
 }
 
 .important-text {
@@ -56,6 +65,36 @@ button:active {
 	position: absolute;
 	top: 16.66vw;
 	left: 16.66vw;
+
+	transition: opacity 1s;
+	-webkit-transition: opacity 1s;
+
+}
+
+#scene {
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+
+	z-index: 0;
+}
+
+#particles-js {
+	z-index: 0;
+}
+
+#particles-js-back {
+	z-index: 0;
+}
+
+.ps {
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
 }
 
 #navigation {
@@ -64,6 +103,7 @@ button:active {
 	bottom: 16.66vw;
 
 	height: 12vw;
+	z-index: 20;
 }
 
 #config {
@@ -87,8 +127,8 @@ ul {
 
 .radio-override {
     list-style-type:none;
-
-        text-align: center;
+    text-align: center;
+    z-index: 20;
 }
 
 .radio-override li {
@@ -129,11 +169,13 @@ input[type="text"] {
 	padding: 0;
 	margin: 0;
 
-	border: 3px solid #171616;
+	border: 0.5vw solid #171616;
 
     font-family: 'Oswald', sans-serif;
     font-size: 5vw;
     color: #171616;
+
+    z-index: 20;
 }
 
 .input-top {
@@ -145,7 +187,7 @@ input[type="text"] {
 }
 
 #sign-up-current-player {
-	font-size: 10vw;
+	font-size: 15vw;
 	text-align: center;
 	left: 16.66vw;
 	top: 14vw;
@@ -182,11 +224,13 @@ input[type="text"] {
 #scoreboard {
 
 	position: absolute;
-	left: 5vw;
+	bottom: 95vw;
+	left: 4vw;
 
 	width: 90vw;
 
-	border:3px solid red;
+	border: 1vw solid black;
+	background-color: #222; /* Grey */
 
 }
 
@@ -202,34 +246,51 @@ input[type="text"] {
 
 .shot {
 
-	width: 6%;
-	height: 10vw;
+	width: 5%;
+	height: 6vw;
 
 	display: block;
 	float: left;
 
     text-align: center;
 
+
 }
 
 #total {
 
 	width: 10%;
-	height: 10vw;
+	height: 6vw;
 
 	display: block;
 	float: left;
 
-	border: 0.5vw solid orange;
+    text-align: center;
+
+	border: 0.5vw solid blue;
 
 }
  
 .avatar {
-	width: 10%;
-	height: 10vw;
+	width: 26.6%;
+	height: 6vw;
 
 	float: left;
 	border: 0.5vw solid red;
+
+}
+
+#target {
+	position: relative;
+
+	width: 100vw;
+	height: 90vh;
+
+	z-index: 20;
+
+	-webkit-animation-duration: 0.1s; /* Safari 4.0 - 8.0 */
+    animation-duration: 0.1s;
+
 
 }
 
@@ -310,4 +371,23 @@ input[type="text"] {
 #seven-point-right {
 	left: 15vw;
 }
+
+
+#in-game-ui {
+	width: 100vw;
+	height: 10vh;
+	position: relative;
+	z-index: 20;
+}
+
+.in-game-ui-button {
+
+	width: 15vw;
+	height: 100%;
+
+	display: block;
+	float: right;
+
+}
+
 
