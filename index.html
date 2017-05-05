@@ -8,7 +8,7 @@
 <!--   <link rel="shortcut icon" href="favicon.ico">
   <link rel="icon" href="favicon.ico"> -->
 
-  <link rel="stylesheet" type="text/css" href="assets/css/sockstrap.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/global-classes.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
   <!-- fonts -->
@@ -69,16 +69,6 @@
 
       <div v-if="currentPage == 2" id = "set-up-game" class="s-12 radio-override">
 
-<!--         <form action="">
-          <input v-model = "gameMode" type="radio" name="mode" value="casual"> Casual
-          <input v-model = "gameMode" type="radio" name="mode" value="competitive"> Competitive
-          <input v-model = "gameMode" type="radio" name="mode" value="arms race"> Arms Race
-          <input v-model = "gameMode" type="radio" name="mode" value="plank"> Plank
-          <input v-model = "gameMode" type="radio" name="mode" value="tournament"> Tournament
-          </br> 
-          <p> {{gameMode}} </p>
-        </form> -->
-
         <ul class="s-8 radio-override row center">
           <li class = "s-4">
               <input id = "casual" v-model.number = "gameMode" type="radio" name="mode" value='casual' class = "s-12">
@@ -111,30 +101,34 @@
       </div>
 
       <div v-if="currentPage == 3" id = "in-game" class = "s-12">
-        <player class = "s-8 player" v-for='n in numPlayers' :player-id = "n - 1">{{n}}</player>
-
-
-     <!--    <div v-if="isRunning">
-          <button @click = "undoShot"> Undo </button>
-          <button @click = "takeShot (0)"> 0 points </button>
-          <button @click = "takeShot (1)"> 1 point </button>
-          <button @click = "takeShot (3)"> 3 points </button>
-          <button @click = "takeShot (5)"> 5 points </button>
-          <button @click = "takeShot (7)" :disabled="!canSevenShot"> 7 points </button>
-
-          <button @click = "quitGame ()"> quit </button>
+        
+        <div id = "scoreboard">
+          <player class = "s-8 player" v-for='n in numPlayers' :player-id = "n - 1">{{n}}</player>
         </div>
-        <div v-else>
+
+        <div id = "target" v-if="isRunning">
+          <button id = "zero-point" @click = "takeShot (0)"> 0 </button>
+          <button id = "one-point" class = "target-ring" @click = "takeShot (1)"></button>
+          <button id = "three-point" class = "target-ring" @click = "takeShot (3)"></button>
+          <button id = "five-point" class = "target-ring" @click = "takeShot (5)"></button>
+          <button id = "seven-point-left" class = "target-ring seven-shot" @click = "takeShot (7)" :disabled="!canSevenShot"></button>
+          <button id = "seven-point-right" class = "target-ring seven-shot" @click = "takeShot (7)" :disabled="!canSevenShot"></button>
+        </div>
+
+<!--         <button @click = "undoShot"> Undo </button>
+        <button @click = "replay"> Restart </button>
+        <button @click = "quitGame"> Quit </button> -->
+<!--         <div v-else>
           <span>1st: {{}}</span>
           <span>2nd: {{}}</span>
           <span>3rd: {{}}</span>
           <button @click = "replay"> Play Again? </button>
           <button @click = "chooseMode"> Choose New Mode </button>
-        </div>
- -->
+        </div> -->
+
       </div>
 
-<!--       <img style = "width: 200vw; height 200vw; mix-blend-mode: overlay;" src="assets/img/grunge_wood.jpg"> -->
+<!--       <img style = " position: absolute; z-index: 20; width: 200vw; height 100vh; mix-blend-mode: overlay;" src="assets/img/grunge_wood.jpg"> -->
 
     </div>
 
@@ -147,7 +141,6 @@
   <!-- game logic scripts -->
   <script src="assets/js/logic/player.js"></script>
   <script src="assets/js/logic/game.js"></script>
-  <script src="assets/js/logic/session.js"></script>
   
   <!-- the main js file -->
   <script src="assets/js/main.js"></script>

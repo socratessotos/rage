@@ -70,7 +70,7 @@ var signUp = {
 }
 
 var shot = {
-	template: "<div v-bind:style='(isSelection) ? selectedStyle : normalStyle' class = 'shot s-1'><p>{{pointValue}}</p></div>",
+	template: "<div v-bind:style='(isSelection) ? selectedStyle : normalStyle' class = 'shot'><span>{{pointValue}}</span></div>",
 
 	//child elements will get their ids from here
 	props: ['playerId', 'shotId'],
@@ -79,10 +79,10 @@ var shot = {
 
 	  	id: this.playerId,
 	  	normalStyle: {
-	  		border:'3px solid black',
+	  		border:'0.5vw solid black',
 	  	},
 	  	selectedStyle: {
-	  		border:'3px solid blue',
+	  		border:'0.5vw solid red',
 	  	},
 	   }
 	},
@@ -108,7 +108,7 @@ var shot = {
 }
 
 var avatar = {
-	template: "<div class = 'avatar s-2'><p>{{name}}</p></div>",
+	template: "<div class = 'avatar'><span>{{name}}</span></div>",
 
 	//child elements will get their ids from here
 	props: ['playerId'],
@@ -129,7 +129,7 @@ var avatar = {
 }
 
 var player = {
-	template: "<div> <avatar :player-id = 'playerId' ></avatar><shot v-for='s in Main.game.totalShots' :player-id = 'playerId' :shot-id = 's-1' ></shot><div>{{totalScore}}</div></div>",
+	template: "<div> <avatar :player-id = 'playerId' ></avatar><shot v-for='s in Main.game.totalShots' :player-id = 'playerId' :shot-id = 's-1' ></shot><div id='total'>{{totalScore}}</div></div>",
 
 	components: {
 	  	'shot': shot,
@@ -272,6 +272,8 @@ var Main = new Vue ({
 
 				//going to game select
 				case 1: 
+
+					return true;
 
 					for (var i = 0; i < this.numPlayers; i++) {
 						if(Main.players[i].name == "" || Main.players[i].email == "")

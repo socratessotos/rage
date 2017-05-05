@@ -179,21 +179,141 @@ input[type="text"] {
 
 }
 
+#scoreboard {
+
+	position: absolute;
+	left: 5vw;
+
+	width: 90vw;
+
+	border:3px solid red;
+
+}
+
 .player {
+	width: 100%;
+	font-family: 'Oswald', sans-serif;
+    font-size: 5vw;
+
+    display: block;
+	float: left;
+
+	padding: none;
+
 }
 
 .shot {
+
+	width: 6%;
+	height: 10vw;
+
 	display: block;
 	float: left;
 
-	font-family: 'Oswald', sans-serif;
-    font-size: 5vw;
+    text-align: center;
+
+    padding: none;
 }
 
-.avatar {
+#total {
+
+	width: 10%;
+	height: 10vw;
+
 	display: block;
 	float: left;
+
+	border: 1vw solid orange;
+
+	padding: none;
+
+}
+ 
+.avatar {
+	width: 10%;
+	height: 10vw;
+
+	float: left;
 	border:3px solid red;
-	display:inline-block;
+
+	padding: none;
+}
+
+.target-ring {
+	position: absolute;
+    border-radius:100%;
+}
+
+.seven-shot {
+		
+	width: 15vw;
+	height: 15vw;
+
+	bottom: 70vw;
+
+	background-color: black;
+	border: 1vw solid black;
+	opacity: 1;
+
+}
+
+.seven-shot:disabled {
+	opacity: 0.1;
+}
+
+#zero-point {
+
+	position: absolute;
+
+	width: 90vw;
+	height: 90vw;
+
+	bottom: 0vw;
+	left: 5vw;
+
+	border: 1vw solid black;
+
+}
+
+#one-point {
+
+	width: 60vw;
+	height: 60vw;
+	border: 1vw solid red;
+
+	bottom: 15vw;
+	left: 20vw;
+
+}
+
+#three-point {
+
+	width: 40vw;
+	height: 40vw;
+	border: 1vw solid blue;
+
+	bottom: 25vw;
+	left: 30vw;
+
+}
+
+#five-point {
+
+	width: 20vw;
+	height: 20vw;
+	border: 1vw solid red;
+
+	bottom: 35vw;
+	left: 40vw;
+
+}
+
+#seven-point-left {
+	right: 15vw;
+
+}
+
+#seven-point-right {
+	left: 15vw;
 }
 

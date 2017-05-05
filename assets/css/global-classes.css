@@ -25,56 +25,6 @@ html, body, .container-fluid, .container{
 	position: relative;
 }
 
-/*column based size for big screens*/
-
-.b-1 {
-	width: 8.33%;
-}
-
-.b-2 {
-	width: 16.66%;
-}
-
-.b-3 {
-	width: 25%;
-}
-
-.b-4 {
-	width: 33.33%;
-}
-
-.b-5 {
-	width: 41.66%;
-}
-
-.b-6 {
-	width: 50%;
-}
-
-.b-7 {
-	width: 58.33%;
-}
-
-.b-8 {
-	width: 66.66%;
-}
-
-.b-9 {
-	width: 75%;
-}
-
-.b-10 {
-	width: 83.33%;
-}
-
-.b-11 {
-	width: 91.66%;
-}
-
-.b-12 {
-	width: 100%;
-}
-
 /*column based sizing for small screens*/
 
 .s-1 {
